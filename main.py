@@ -1,7 +1,6 @@
 import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 from datetime import datetime
 pd.options.mode.chained_assignment = None
 
@@ -483,7 +482,6 @@ def movie_data():
                 #     break
 
         if admin_choice_main == 4:  # view all shows
-
             conn = sqlite3.connect( 'streamingCatalogSystem.db' )
             cursor = conn.cursor()
             cursor.execute( '''SELECT * from tb_movies''' )
@@ -513,20 +511,22 @@ def movie_data():
             conn.close()
 
         if admin_choice_main == 5:
-            conn = sqlite3.connect( 'streamingCatalogSystem.db' )
-            cursor = conn.cursor()
+            while True:
+                conn = sqlite3.connect( 'streamingCatalogSystem.db' )
+                cursor = conn.cursor()
 
-            query = f"select * from tb_userdata "
-            cursor.execute( query )
-            show_row = cursor.fetchall()
-            for show_row in show_row:
-                print( "_" * 100 )
-                print( "Id: ", show_row[ 0 ] )
-                print( "Username: ", show_row[ 1 ] )
-                print( "Show Name: ", show_row[ 2 ] )
-                print( "Show Type: ", show_row[ 3 ] )
-                print( "Time: ", show_row[ 6 ] )
-                print( "_" * 100 )
+                query = f"select * from tb_userdata "
+                cursor.execute( query )
+                show_row = cursor.fetchall()
+                for show_row in show_row:
+                    print( "_" * 100 )
+                    print( "Id: ", show_row[ 0 ] )
+                    print( "Username: ", show_row[ 1 ] )
+                    print( "Show Name: ", show_row[ 2 ] )
+                    print( "Show Type: ", show_row[ 3 ] )
+                    print( "Time: ", show_row[ 6 ] )
+                    print( "_" * 100 )
+                break
             # while True:
             #     movie_data()
                 # movies_data = movie_data()
